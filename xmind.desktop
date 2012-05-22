@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=XMind
+Comment=Launch XMind
+Exec=xmind
+Terminal=false
+Type=Application
+Icon=xmind.png
+StartupNotify=true
+Categories=Office;GTK;Development;
+MimeType=application/xmind;
