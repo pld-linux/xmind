@@ -5,7 +5,7 @@
 Summary:	Brainstorming and Mind Mapping
 Name:		xmind
 Version:	3.2.1
-Release:	0.4
+Release:	0.6
 License:	EPL v1.0 / GPL v3
 Group:		Applications/Engineering
 URL:		http://www.xmind.net/
@@ -14,6 +14,7 @@ Source0:	http://dl2.xmind.net/xmind-downloads/%{name}-portable-%{version}.201011
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}.xml
+Source4:	%{name}.sh
 BuildRequires:	unzip
 Requires:	eclipse-swt
 Requires:	jre
@@ -47,8 +48,7 @@ mv XMind_Linux{_64bit,}
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_appdir}}
 cp -af * $RPM_BUILD_ROOT%{_appdir}
-
-ln -s %{_appdir}/XMind_Linux/xmind-bin $RPM_BUILD_ROOT%{_bindir}/xmind
+install -p %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # desktop
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
