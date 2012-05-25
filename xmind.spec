@@ -1,16 +1,17 @@
 # TODO
 # - build from source: https://code.google.com/p/xmind3/
 # - use system eclipse files not bundled copy
+# - cleanup at least wrong os/arch files
 
 Summary:	Brainstorming and Mind Mapping
 Name:		xmind
 Version:	3.2.1
-Release:	0.6
+Release:	0.7
 License:	EPL v1.0 / GPL v3
 Group:		Applications/Engineering
 URL:		http://www.xmind.net/
 Source0:	http://dl2.xmind.net/xmind-downloads/%{name}-portable-%{version}.201011212218.zip
-# Source0-md5:	-
+# Source0-md5:	c1036d42b044aa81f65cdba745a7c44b
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}.xml
@@ -42,6 +43,7 @@ for knowledge management, meeting minutes, task management, and GTD.
 mv XMind_Linux{_64bit,}
 %else
 %{__rm} -r XMind_Linux_64bit XMind_Windows XMind_Mac_OS_X
+find -name *x86*64* | xargs rm -rf
 %endif
 
 %install
@@ -49,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_appdir}}
 cp -af * $RPM_BUILD_ROOT%{_appdir}
 install -p %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
+sed -i -e 's,@appdir@,%{_appdir},' $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # desktop
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
